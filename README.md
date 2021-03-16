@@ -1,7 +1,7 @@
 # MontyMobile
 MontyMobile Project
 
-WELCOME TO MY MONTYMOBILE PROJECT
+WELCOME TO MY MONTYMOBILE PROJECT, DONE BY RAMI ABOU SAWAN
 This project uses:
 -Spring boot as backend
 -REACT as frontend
@@ -9,9 +9,10 @@ This project uses:
 
 TO RUN THIS PROJECT, YOU NEED:
 
-
+-Open PostgreSQL terminal on your machine, then do: create database testdb;
 -The MontyBack file is the Spring Boot backend file, please open this file in your favourite IDE, open the resources file inside main,
 then open application.properties file, and change the sql password to your PostgreSQL machine password.
+
 -Run the MontyBack file
 -The MontyFront file is the REACT frontend file, please open this file in your favourite IDE, then open terminal on this file, and type "npm i", then "npm start"
 -Now you have the MontyBack Spring boot file running with the MontyFront REACT file , using PostgreSQL database.

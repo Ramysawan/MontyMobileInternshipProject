@@ -251,6 +251,13 @@ export default class Customer extends Component {
             <p>Please click on a Customer...</p>
           </div>
         )}
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
       </div>
     );
   }

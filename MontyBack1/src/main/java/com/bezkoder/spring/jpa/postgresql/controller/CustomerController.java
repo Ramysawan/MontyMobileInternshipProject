@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bezkoder.spring.jpa.postgresql.model.Customer;
 import com.bezkoder.spring.jpa.postgresql.repository.CustomerRepository;
+import com.google.i18n.phonenumbers.NumberParseException;
 
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
@@ -64,7 +65,7 @@ public class CustomerController {
 	public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer) {
 		try {
 			Customer _customer = customerRepository
-					.save(new Customer(customer.getTitle(), customer.getDescription(), customer.getPhoneNumber(),false));
+					.save(new Customer(customer.getTitle(), customer.getDescription(), customer.getPhoneNumber(), customer.getCountryCode(), customer.getCountryName(), customer.getOperatorName(),false));
 			return new ResponseEntity<>(_customer, HttpStatus.CREATED);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -72,13 +73,17 @@ public class CustomerController {
 	}
 
 	@PutMapping("/customers/{id}")
-	public ResponseEntity<Customer> updateCustomer(@PathVariable("id") long id, @RequestBody Customer customer) {
+	public ResponseEntity<Customer> updateCustomer(@PathVariable("id") long id, @RequestBody Customer customer) throws NumberParseException {
 		Optional<Customer> customerData = customerRepository.findById(id);
 
 		if (customerData.isPresent()) {
 			Customer _customer = customerData.get();
 			_customer.setTitle(customer.getTitle());
 			_customer.setDescription(customer.getDescription());
+			_customer.setPhoneNumber(customer.getPhoneNumber());
+			_customer.setCountryCode(customer.getCountryCode());
+			_customer.setCountryName(customer.getCountryName());
+			_customer.setOperatorName(customer.getOperatorName());
 			_customer.setPhoneNumber(customer.getPhoneNumber());
 			
 			_customer.setPublished(customer.isPublished());

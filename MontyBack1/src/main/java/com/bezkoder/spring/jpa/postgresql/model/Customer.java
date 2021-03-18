@@ -43,14 +43,14 @@ public class Customer {
 
 	}
 
-	public Customer(String title, String description, String phoneNumber, boolean published) {
+	public Customer(String title, String description, String phoneNumber, String countryName, String countryCode, String operatorName, boolean published) {
 		this.title = title;
 		this.description = description;
 		this.phoneNumber = phoneNumber;
 		this.published = published;
-		this.operatorName = "";
-		this.countryName = "";
-		this.countryCode = "";
+		this.operatorName = operatorName;
+		this.countryName = countryName;
+		this.countryCode = countryCode;
 	}
 
 	public long getId() {
@@ -143,6 +143,10 @@ public class Customer {
 				return("Ogero Landline");
 
 			}
+			else if(phoneNumber.length() <= 11){
+				return("Unknown/Number Invalid");
+
+			}
 
 			else {
 				return("Alfa");
@@ -174,6 +178,8 @@ public class Customer {
 			if(phoneUtil.isValidNumber(numberProto) == true){
 				System.out.println("Number is Valid!");
 			
+			} else {
+				System.out.println("Number invalid!");
 			}
 		}catch (NumberParseException e) {  
 			System.err.println("NumberParseException was thrown: "  
